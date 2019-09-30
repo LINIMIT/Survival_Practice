@@ -751,6 +751,12 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 578116897}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &507917848 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1446911523719604, guid: eb2f6bf4df4f61240a2398eb7a3f65a8,
+    type: 3}
+  m_PrefabInstance: {fileID: 1562537777}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &519449271
 GameObject:
   m_ObjectHideFlags: 0
@@ -1028,6 +1034,9 @@ MonoBehaviour:
   attackDelay: 1.7
   attackDelayA: 0.5
   attackDelayB: 0.1
+  workDelay: 1.3
+  workDelayA: 0.5
+  workDelayB: 0.1
   anim: {fileID: 523613239}
 --- !u!1001 &548511698
 PrefabInstance:
@@ -1178,6 +1187,9 @@ MonoBehaviour:
   attackDelay: 1
   attackDelayA: 0.5
   attackDelayB: 0.1
+  workDelay: 0
+  workDelayA: 0
+  workDelayB: 0
   anim: {fileID: 548511701}
 --- !u!1 &559512608
 GameObject:
@@ -7071,6 +7083,7 @@ MonoBehaviour:
   - {fileID: 1041721281}
   - {fileID: 1041721280}
   - {fileID: 1041721279}
+  - {fileID: 1041721279}
   audioSourceBgm: {fileID: 1041721278}
   playSoundName: []
   effectSounds:
@@ -7082,8 +7095,12 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: 9f4c9175c7a6a1343bc1a12dcae0872a, type: 3}
   - name: Twig_Broken
     clip: {fileID: 8300000, guid: 2fc5fadf5287ab94b9a0c5ce062775ca, type: 3}
-  - name: 
-    clip: {fileID: 0}
+  - name: Tree_Chop
+    clip: {fileID: 8300000, guid: 83592a587650eaf4290b003b32dd882e, type: 3}
+  - name: Tree_FallDown
+    clip: {fileID: 8300000, guid: 439bda1aaeb78e34ab0e50a9d330e111, type: 3}
+  - name: Tree_Log
+    clip: {fileID: 8300000, guid: 78d5f11a5f696e34d9b1b42d029e63fc, type: 3}
   bgmSounds:
   - name: 
     clip: {fileID: 0}
@@ -7545,6 +7562,9 @@ MonoBehaviour:
   attackDelay: 1.8
   attackDelayA: 0.8
   attackDelayB: 0.1
+  workDelay: 0
+  workDelayA: 0
+  workDelayB: 0
   anim: {fileID: 1219404741}
 --- !u!1 &1224026084
 GameObject:
@@ -8229,9 +8249,105 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1446911523719604, guid: eb2f6bf4df4f61240a2398eb7a3f65a8, type: 3}
+      propertyPath: m_TagString
+      value: Tree
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 114686179150937730, guid: eb2f6bf4df4f61240a2398eb7a3f65a8, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: eb2f6bf4df4f61240a2398eb7a3f65a8, type: 3}
+--- !u!1 &1562537778 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1310823110039352, guid: eb2f6bf4df4f61240a2398eb7a3f65a8,
+    type: 3}
+  m_PrefabInstance: {fileID: 1562537777}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1562537779 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1794972309680338, guid: eb2f6bf4df4f61240a2398eb7a3f65a8,
+    type: 3}
+  m_PrefabInstance: {fileID: 1562537777}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1562537780 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1780167092355552, guid: eb2f6bf4df4f61240a2398eb7a3f65a8,
+    type: 3}
+  m_PrefabInstance: {fileID: 1562537777}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1562537781 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1336330681770020, guid: eb2f6bf4df4f61240a2398eb7a3f65a8,
+    type: 3}
+  m_PrefabInstance: {fileID: 1562537777}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1562537782 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1296095353169504, guid: eb2f6bf4df4f61240a2398eb7a3f65a8,
+    type: 3}
+  m_PrefabInstance: {fileID: 1562537777}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1562537783 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1538908664436460, guid: eb2f6bf4df4f61240a2398eb7a3f65a8,
+    type: 3}
+  m_PrefabInstance: {fileID: 1562537777}
+  m_PrefabAsset: {fileID: 0}
+--- !u!136 &1562537784 stripped
+CapsuleCollider:
+  m_CorrespondingSourceObject: {fileID: 136694316036545784, guid: eb2f6bf4df4f61240a2398eb7a3f65a8,
+    type: 3}
+  m_PrefabInstance: {fileID: 1562537777}
+  m_PrefabAsset: {fileID: 0}
+--- !u!54 &1562537785 stripped
+Rigidbody:
+  m_CorrespondingSourceObject: {fileID: 54244155857259320, guid: eb2f6bf4df4f61240a2398eb7a3f65a8,
+    type: 3}
+  m_PrefabInstance: {fileID: 1562537777}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1562537786 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1470163044745910, guid: eb2f6bf4df4f61240a2398eb7a3f65a8,
+    type: 3}
+  m_PrefabInstance: {fileID: 1562537777}
+  m_PrefabAsset: {fileID: 0}
+--- !u!136 &1562537787 stripped
+CapsuleCollider:
+  m_CorrespondingSourceObject: {fileID: 136555614421340540, guid: eb2f6bf4df4f61240a2398eb7a3f65a8,
+    type: 3}
+  m_PrefabInstance: {fileID: 1562537777}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1562537788
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1562537786}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 852112a49ba58fb42b001dde83eaeb01, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  go_treePieces:
+  - {fileID: 1562537783}
+  - {fileID: 1562537782}
+  - {fileID: 1562537781}
+  - {fileID: 1562537780}
+  - {fileID: 1562537779}
+  go_treeCenter: {fileID: 1562537778}
+  go_Log_Prefabs: {fileID: 767250318, guid: 2cdcf0a62de21724eaa4a682e3794d28, type: 3}
+  force: 20
+  go_ChildTree: {fileID: 507917848}
+  go_hit_effect_prefab: {fileID: 5639952989926667484, guid: 90c5dc91a850c5a4cbaab196f8503c7a,
+    type: 3}
+  debrisDestroyTime: 5
+  destroyTime: 7
+  parent_col: {fileID: 1562537787}
+  child_col: {fileID: 1562537784}
+  childRigid: {fileID: 1562537785}
+  chop_sound: Tree_Chop
+  falldown_sound: Tree_FallDown
+  logChange_sound: Tree_Log
 --- !u!1 &1673572001
 GameObject:
   m_ObjectHideFlags: 0
