@@ -10,6 +10,9 @@ public abstract class CloseWeaponController : MonoBehaviour
     //현재 장착된 Hand
     [SerializeField]
     protected CloseWeapon currentCloseWeapon;
+    private PlayerController thePlayerController;
+
+
 
     //공격중
     protected bool isAttack = false;
@@ -17,7 +20,10 @@ public abstract class CloseWeaponController : MonoBehaviour
 
     protected RaycastHit hitInfo;
 
-
+    private void Start()
+    {
+        thePlayerController = FindObjectOfType<PlayerController>();
+    }
 
     protected void TryAttack()
     {
@@ -29,6 +35,7 @@ public abstract class CloseWeaponController : MonoBehaviour
                 {
                     if (currentCloseWeapon.isAxe && hitInfo.transform.tag == "Tree")
                     {
+                        StartCoroutine(thePlayerController.TreeLookCoroutine(hitInfo.transform.GetComponent<TreeComponent>().GetTreeCenterPosition()));
                         //코루틴 실행
                         StartCoroutine(AttackCoroutine("Chop", currentCloseWeapon.workDelayA, currentCloseWeapon.workDelayB, currentCloseWeapon.workDelay));
                         return;

@@ -203,7 +203,7 @@ public class PlayerController : MonoBehaviour
             Crouch();
 
         theGunController.CancelFineSight();
-       
+
         isRun = true;
         theCrossHair.RunningAnimation(isRun);
 
@@ -228,14 +228,43 @@ public class PlayerController : MonoBehaviour
 
     private void CameraRotation()
     {
-        //상하 카메라 회전
-        float xRotation = Input.GetAxisRaw("Mouse Y");//위아래로 고개를 돌림
-        float camearaRotationX = xRotation * lookSensitivity;
-        currentCameraRotationX -= camearaRotationX;
-        currentCameraRotationX = Mathf.Clamp(currentCameraRotationX, -cameraRotationLimit, cameraRotationLimit); //카메라 각도 제한
+        if (!pauseCameraRotation)
+        {
+            //상하 카메라 회전
+            float xRotation = Input.GetAxisRaw("Mouse Y");//위아래로 고개를 돌림
+            float camearaRotationX = xRotation * lookSensitivity;
+            currentCameraRotationX -= camearaRotationX;
+            currentCameraRotationX = Mathf.Clamp(currentCameraRotationX, -cameraRotationLimit, cameraRotationLimit); //카메라 각도 제한
 
-        theCamera.transform.localEulerAngles = new Vector3(currentCameraRotationX, 0f, 0f);
+            theCamera.transform.localEulerAngles = new Vector3(currentCameraRotationX, 0f, 0f);
+
+        }
+    }
+
+    private bool pauseCameraRotation = false;
+
+    public IEnumerator TreeLookCoroutine(Vector3 _target)
+    {
+        pauseCameraRotation = true;
+
+        /* rotation은 쿼터니온 Euler는 벡터3로 생각하자
+   *계산은 쿼터니온으로 하고, 나온 값을 x,y,z인 오일러로 바꿔주는 것*/
+
+
+        Quaternion direction = Quaternion.LookRotation(_target - theCamera.transform.position);
+        Vector3 eulerValue = direction.eulerAngles;//쿼터니언 값을 벡터값인 eulervalue로 변경
+        float destinationX = eulerValue.x;
+
+        while(Mathf.Abs(destinationX - currentCameraRotationX)>= 0.5f)//나무를 칠때 나무파괴부분과 현재 카메라의 시선의 차이가 0.5f보다 크다면
+        {
+            eulerValue = Quaternion.Lerp(theCamera.transform.localRotation, direction, 0.3f).eulerAngles;
+            theCamera.transform.localRotation = Quaternion.Euler(eulerValue.x, 0f, 0f);//현재 카메라의 위치를 나무파괴부분으로 이동시킴
+            currentCameraRotationX = theCamera.transform.localEulerAngles.x;
+            yield return null;
+        }
+        pauseCameraRotation = false;
     }
 
 
+ 
 }
