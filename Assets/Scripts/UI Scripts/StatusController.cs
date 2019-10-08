@@ -79,7 +79,7 @@ public class StatusController : MonoBehaviour
 
     private void SPRechargeTime()
     {
-        if(spUsed)
+        if (spUsed)
         {
             if (currentSpRechargeTime < spRechargeTime)
             {
@@ -94,7 +94,7 @@ public class StatusController : MonoBehaviour
 
     private void SPRecover()
     {
-        if(!spUsed && currentSp < sp)
+        if (!spUsed && currentSp < sp)
         {
             currentSp += spIncreaseSpeed;
         }
@@ -102,11 +102,11 @@ public class StatusController : MonoBehaviour
 
 
 
-    private void  Hungry()
+    private void Hungry()
     {
-        if(currentHungry > 0)
+        if (currentHungry > 0)
         {
-            if(currentHungryDecreaseTime <= hungryDecreaseTime)
+            if (currentHungryDecreaseTime <= hungryDecreaseTime)
             {
                 currentHungryDecreaseTime++;
             }
@@ -156,6 +156,104 @@ public class StatusController : MonoBehaviour
 
     }
 
+    public void IncreaseHP(int _count)
+    {
+        if (currentHp + _count < hp)//현재 회복량+ 회복될 수치가 최대회복 수치를 넘는걸 계산
+        {
+            currentHp += _count;
+        }
+        else
+        {
+            currentHp = hp;
+        }
+    }
+
+    public void DecreaseHP(int _count)
+    {
+        if (currentDp > 0)
+        {
+            DecreaseDP(_count);
+            return;
+        }
+        currentHp -= _count;
+        if (currentHp <= 0)
+        {
+            Debug.Log("캐릭터의 HP가 0이 되었습니다");
+        }
+    }
+
+    public void IncreaseDP(int _count)
+    {
+        if (currentDp + _count < dp)//현재 회복량+ 회복될 수치가 최대회복 수치를 넘는걸 계산
+        {
+            currentDp += _count;
+        }
+        else
+        {
+            currentDp = dp;
+        }
+    }
+
+    public void DecreaseDP(int _count)
+    {
+
+        currentDp -= _count;
+        if (currentDp <= 0)
+        {
+            Debug.Log("캐릭터의 DP가 0이 되었습니다");
+        }
+    }
+
+    public void IncreaseHungry(int _count)
+    {
+        if (currentHungry + _count < hungry)//현재 회복량+ 회복될 수치가 최대회복 수치를 넘는걸 계산
+        {
+            currentHungry += _count;
+        }
+        else
+        {
+            currentHungry = hungry;
+        }
+    }
+
+    public void DecreaseHungry(int _count)
+    {
+        if (currentHungry - _count < 0)
+        {
+            currentHungry = 0;
+        }
+        else
+        {
+            currentHungry -= _count;
+        }
+
+    }
+
+    public void IncreaseThirsty(int _count)
+    {
+        if (currentThirsty + _count < thirsty)//현재 회복량+ 회복될 수치가 최대회복 수치를 넘는걸 계산
+        {
+            currentThirsty += _count;
+        }
+        else
+        {
+            currentThirsty = thirsty;
+        }
+    }
+
+    public void DecreaseThirsty(int _count)
+    {
+        if (currentThirsty - _count < 0)
+        {
+            currentThirsty = 0;
+        }
+        else
+        {
+            currentThirsty -= _count;
+        }
+
+    }
+
     public void DecreaseStamina(int _count)
     {
         spUsed = true;
@@ -168,5 +266,12 @@ public class StatusController : MonoBehaviour
         else
             currentSp = 0;
     }
+
+
+    public int GetCurrentSP()
+    {
+        return currentSp;
+    }
+
 
 }
